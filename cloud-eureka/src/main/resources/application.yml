@@ -1,0 +1,41 @@
+#server:
+#  port: 7900
+spring:
+  application:
+    name: eureka
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:7900/eureka/,http://localhost:7901/eureka/,http://localhost:7902/eureka/
+  server:
+    enable-self-preservation: false  # 自我保护开启/关闭
+    renewal-percent-threshold: 0.85  # 自我保护的阈值
+    eviction-interval-timer-in-ms: 1000 # 1s, 假如心跳服务挂了，还没来得及剔除他，客户端在拉取服务时是否还可以拉取到他
+---
+spring:
+  profiles: 7900
+server:
+  port: 7900
+eureka:
+  instance:
+    hostname: eureka-7900
+
+---
+spring:
+  profiles: 7901
+server:
+  port: 7901
+eureka:
+  instance:
+    hostname: eureka-7901
+
+---
+spring:
+  profiles: 7902
+server:
+  port: 7902
+eureka:
+  instance:
+    hostname: eureka-7902
