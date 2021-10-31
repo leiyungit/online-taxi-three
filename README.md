@@ -15,10 +15,10 @@
 ​			选择：Lombox；Eureka Client；Spring Web
 
 ## 客户端配置注册中心时，需要随机把server的url打乱
-    ```
+   ````java
     eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:7900/eureka/
-   ```
+      client:
+        service-url:
+          defaultZone: http://localhost:7900/eureka/
+   ````
    
