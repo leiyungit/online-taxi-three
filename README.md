@@ -13,3 +13,12 @@
 ### 3、使用springboot创建：api-passenger
 
 ​			选择：Lombox；Eureka Client；Spring Web
+
+## 客户端配置注册中心时，需要随机把server的url打乱
+    ```
+    eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7900/eureka/
+   ```
+   
