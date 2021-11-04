@@ -2,7 +2,7 @@
 #  port: 7900
 spring:
   application:
-    name: eureka
+    name: cloud-eureka
 eureka:
   client:
     register-with-eureka: false
@@ -10,9 +10,9 @@ eureka:
     service-url:
       defaultZone: http://localhost:7900/eureka/,http://localhost:7901/eureka/,http://localhost:7902/eureka/
   server:
-    enable-self-preservation: false  # ×ÔÎÒ±£»¤¿ªÆô/¹Ø±Õ
-    renewal-percent-threshold: 0.85  # ×ÔÎÒ±£»¤µÄãĞÖµ
-    eviction-interval-timer-in-ms: 1000 # 1s, ¼ÙÈçĞÄÌø·şÎñ¹ÒÁË£¬»¹Ã»À´µÃ¼°ÌŞ³ıËû£¬¿Í»§¶ËÔÚÀ­È¡·şÎñÊ±ÊÇ·ñ»¹¿ÉÒÔÀ­È¡µ½Ëû
+    enable-self-preservation: true  # è‡ªæˆ‘ä¿æŠ¤å¼€å¯/å…³é—­
+    renewal-percent-threshold: 0.85  # è‡ªæˆ‘ä¿æŠ¤çš„é˜ˆå€¼
+    eviction-interval-timer-in-ms: 30000 # 1s, å‡å¦‚å¿ƒè·³æœåŠ¡æŒ‚äº†ï¼Œè¿˜æ²¡æ¥å¾—åŠå‰”é™¤ä»–ï¼Œå®¢æˆ·ç«¯åœ¨æ‹‰å–æœåŠ¡æ—¶æ˜¯å¦è¿˜å¯ä»¥æ‹‰å–åˆ°ä»–
 ---
 spring:
   profiles: 7900
