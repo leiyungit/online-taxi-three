@@ -1,0 +1,18 @@
+# 应用服务 WEB 访问端口
+server:
+  port: 8014
+# 应用名称
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # url: jdbc:mysql://localhost:3306/online-taxi-three?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai # 数据库连接地址
+    url: jdbc:mysql://localhost:3306/online-taxi-three?serverTimezone=UTC&useSSL=false
+    username: root
+    password: 123456
+
+mybatis:
+  mapper-locations: classpath:mapping/*.xml # mapper映射文件位置
+  configuration:
+    map-underscore-to-camel-case: true   # 驼峰命名
+  #指定Mybatis的实体目录
+  type-aliases-package: com.msb.testmybatis.entity

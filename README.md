@@ -24,19 +24,27 @@
 
 
 
-| 项目   | module                    | 依赖                              |
-| ------ | ------------------------- | --------------------------------- |
-| 公共   | internal-common           | lombok                            |
-| 验证码 | service-verification-code | eureka-client，lombok，web，redis |
-| 短信   | service-sms               | eureka-client，lombok，web        |
+| 项目   | module                    | 依赖                                                         |
+| ------ | ------------------------- | ------------------------------------------------------------ |
+| 公共   | internal-common           | lombok，json-lib，jjwt，commons-codec                        |
+| 验证码 | service-verification-code | eureka-client，lombok，web，redis                            |
+| 短信   | service-sms               | eureka-client，lombok，web                                   |
+| 用户   | service-passenger-user    | eureka-client，lombok，web，reactive-redis，cache，mybatis，mysql，druid |
+| 测试   | test-mybatis              | 测试springboot mybatis  xml的sql数据库查询                   |
 
+springboot版本
 
-
-
+```
+2.3.7.RELEASE
+service-passenger-user，api-passenger
+2.4.0
+其他
+```
 
 验证码服务接口
 
-| 接口       | url                                                    |
-| ---------- | ------------------------------------------------------ |
-| 生成验证码 | http://localhost:9001/verify-code/generate/1/123456789 |
+| 接口       | url                                                          |
+| ---------- | ------------------------------------------------------------ |
+| 生成验证码 | http://localhost:9001/verify-code/generate/1/123456789<br /> 参数：{ "passengerPhone":"13344445555"} |
+| 登录       | http://api-passenger:8080/auth/login<br /> 参数：{ "passengerPhone":"13344445555","code":"xxxxxx"} |
 

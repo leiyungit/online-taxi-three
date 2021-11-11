@@ -1,4 +1,4 @@
-package com.msb.internalcommon.dto.serviceverificationcode;
+package com.msb.internalcommon.dto.serviceverificationcode.response;
 
 import lombok.Data;
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.msb.testmybatis.dao.ServicePassengerUserInfoMapper">
+    <select id="selectByPhoneNumber" resultType="com.msb.testmybatis.entity.ServicePassengerUserInfo" parameterType="java.lang.String" >
+        select
+        id, register_date, passenger_phone, passenger_name, passenger_gender, user_state,
+        create_time, update_time
+        from service_passenger_user_info
+        where passenger_phone = #{passengerPhone}
+    </select>
+    <select id="fandAllUser" resultType="com.msb.testmybatis.entity.ServicePassengerUserInfo" >
+        select
+        id, register_date, passenger_phone, passenger_name, passenger_gender, user_state,
+        create_time, update_time
+        from service_passenger_user_info
+    </select>
+</mapper>
