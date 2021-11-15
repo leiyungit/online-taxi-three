@@ -37,7 +37,7 @@ eureka-service:
     methodGenerate: /verify-code/generate # 生成验证码
     methodVerify: /verify-code/verify
   # user 未启用
-  passenger-user
+  passenger-user:
     serviceName: service-passenger-user
     http: http://
     method: /auth/login
