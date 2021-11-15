@@ -15,6 +15,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,19 +62,33 @@ public class SmsServiceImpl implements SmsService {
                 }
 
                 //发生错误时，不影响其他手机号和模板的发送
-
                 try {
-                    send(phoneNumber,template.getId(),template.getTemplateMap());
+                    int result = send(phoneNumber, template.getId(), template.getTemplateMap());
                     // 组装SMS对象
+                    smsRecord.setSendTime(new Date());
+                    smsRecord.setSmsContent(content);
+                    smsRecord.setSendFlag(1);
+                    smsRecord.setSendNumber(0);
+                    smsRecord.setOperatorName("");
+                    if(result != SmsStatusEnum.SEND_SUCCESS.getCode()) {
+                        throw new Exception("短信发送失败");
+                    }
+                    log.info("短信发送成功");
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    smsRecord.setSendFlag(0);
+                    smsRecord.setSendNumber(1);
+                    // e.printStackTrace();
+                    log.error("发送短信（" + template.getId() + "）失败：" + phoneNumber, e);
                 } finally {
-
+                    //smsRecord.setCreateTime(new Date());
+                    //smsRecord.setUpdateTime(new Date());
+                    //System.out.println(smsRecord);
+                    smsRecordDao.insertSelective(smsRecord);
                 }
 
             }
         }
-        return null;
+        return ResponseResult.success("");
     }
 
     private int send(String phoneNumber, String templateId, Map<String,?> map) throws Exception {

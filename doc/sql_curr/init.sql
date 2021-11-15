@@ -32,8 +32,8 @@ CREATE TABLE `service_sms_record` (
   `send_number` INT NOT NULL DEFAULT '0' COMMENT '发送失败次数',
   `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `uqe_phone_number` (`phone_number`,`sms_content`)
+  PRIMARY KEY (`id`)
+  -- UNIQUE KEY `uqe_phone_number` (`phone_number`,`sms_content`)
 ) ENGINE=INNODB AUTO_INCREMENT=202 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- 短信模板
@@ -55,6 +55,8 @@ INSERT INTO `service_sms_template` VALUES ('5', 'SMS_144145499', '登录验证�
 
 SELECT * FROM service_passenger_user_info;
 SELECT * FROM service_sms_template;
+-- delete FROM service_sms_record;
+SELECT * FROM service_sms_record;
 
 SELECT
         id, register_date, passenger_phone, passenger_name, passenger_gender, user_state,

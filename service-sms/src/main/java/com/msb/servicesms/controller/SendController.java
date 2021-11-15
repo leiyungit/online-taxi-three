@@ -6,10 +6,7 @@ import com.msb.servicesms.service.SmsService;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/send")
@@ -23,5 +20,12 @@ public class SendController {
     public ResponseResult send(@RequestBody SmsSendRequest smsSendRequest){
         log.info("/send/sms-template request:{}", JSONObject.fromObject(smsSendRequest));
         return smsService.sendSms(smsSendRequest);
+    }
+
+    // @RequestMapping(value ="/test",method=RequestMethod.POST)
+    @PostMapping("/test")
+    public ResponseResult test(){
+        System.out.println("test");
+        return ResponseResult.success("service-sms");
     }
 }

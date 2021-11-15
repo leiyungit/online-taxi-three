@@ -22,3 +22,22 @@ logging:
 #    enabled: true
 #    clients: demo
 
+# 微服务
+eureka-service:
+  # 短信
+  sms:
+    serviceName: service-sms
+    http: http://
+    method: /send/sms-template
+    templateId: SMS_144145499 # 登录短信验证码模板
+  # 验证码
+  verify-code:
+    serviceName: service-verification-code
+    http: http://
+    methodGenerate: /verify-code/generate # 生成验证码
+    methodVerify: /verify-code/verify
+  # user 未启用
+  passenger-user
+    serviceName: service-passenger-user
+    http: http://
+    method: /auth/login

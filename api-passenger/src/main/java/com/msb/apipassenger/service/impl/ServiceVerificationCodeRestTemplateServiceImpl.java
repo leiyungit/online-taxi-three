@@ -1,5 +1,6 @@
 package com.msb.apipassenger.service.impl;
 
+import com.msb.apipassenger.config.ServiceVerifyCodeConfig;
 import com.msb.apipassenger.service.ServiceVerificationCodeRestTemplateService;
 import com.msb.internalcommon.dto.ResponseResult;
 import com.msb.internalcommon.dto.serviceverificationcode.request.VerifyCodeRequest;
@@ -14,6 +15,9 @@ public class ServiceVerificationCodeRestTemplateServiceImpl implements ServiceVe
 
     @Autowired
     RestTemplate restTemplate;
+
+    @Autowired
+    private ServiceVerifyCodeConfig serviceVerifyCodeConfig;
     /**
      * 验证码服务器 - 生成验证码
      *
@@ -23,7 +27,8 @@ public class ServiceVerificationCodeRestTemplateServiceImpl implements ServiceVe
      */
     @Override
     public ResponseResult generatorCode(int identity, String phoneNumber) {
-        String url="http://service-verification-code/verify-code/generate/"+identity+"/"+phoneNumber;
+        // String url="http://service-verification-code/verify-code/generate/"+identity+"/"+phoneNumber;
+        String url=serviceVerifyCodeConfig.getHttp()+serviceVerifyCodeConfig.getServiceName()+serviceVerifyCodeConfig.getMethodGenerate() + "/" +identity+"/"+phoneNumber;
         ResponseResult result = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<Object>(null, null), ResponseResult.class).getBody();
         // System.out.println(result);
         return result;
@@ -31,7 +36,8 @@ public class ServiceVerificationCodeRestTemplateServiceImpl implements ServiceVe
 
     @Override
     public ResponseResult verifyCode(int identity, String phoneNumber, String code) {
-        String url="http://service-verification-code/verify-code/verify";
+        // String url="http://service-verification-code/verify-code/verify";
+        String url= serviceVerifyCodeConfig.getHttp()+serviceVerifyCodeConfig.getServiceName()+serviceVerifyCodeConfig.getMethodVerify();
         VerifyCodeRequest request = new VerifyCodeRequest();
         request.setCode(code);
         request.setIdentity(identity);
