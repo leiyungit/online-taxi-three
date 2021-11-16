@@ -31,6 +31,8 @@
 | 短信   | service-sms               | eureka-client，lombok，web                                   |
 | 用户   | service-passenger-user    | eureka-client，lombok，web，reactive-redis，cache，mybatis，mysql，druid |
 | 测试   | test-mybatis              | 测试springboot mybatis  xml的sql数据库查询                   |
+| 网关   | cloud-zuul                | eureka-client，lombok，web，zuul，redis，                    |
+|        |                           |                                                              |
 
 springboot版本
 

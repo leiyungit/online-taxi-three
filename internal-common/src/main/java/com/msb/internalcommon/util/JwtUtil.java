@@ -4,10 +4,12 @@ package com.msb.internalcommon.util;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 public class JwtUtil {
 
     /**
@@ -46,13 +48,13 @@ public class JwtUtil {
             Claims body = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
             if(body!=null){
                 JwtInfo jwtInfo = new JwtInfo();
-                jwtInfo.setToken(body.getSubject());
+                jwtInfo.setSubject(body.getSubject());
                 jwtInfo.setIssueDate(body.getIssuedAt());
                 return jwtInfo;
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("token 过期");
+            // e.printStackTrace();
+            log.error("Jwt 解析 token 过期");
         }
         return null;
     }

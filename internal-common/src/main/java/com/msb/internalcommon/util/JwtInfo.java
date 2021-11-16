@@ -6,6 +6,6 @@ import java.util.Date;
 
 @Data
 public class JwtInfo {
-    private String token;
+    private String subject;
     private Date issueDate;
 }
