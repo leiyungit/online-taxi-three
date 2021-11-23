@@ -1,4 +1,4 @@
-package com.msb.cloudzuul.filter;
+package com.msb.onlinetaxizuul.filter;
 
 import com.msb.internalcommon.constant.RedisKeyPrefixConstant;
 import com.msb.internalcommon.util.JwtInfo;
@@ -89,14 +89,15 @@ public class AuthFilter extends ZuulFilter {
                 // log.info("redisToken:{}",redisToken);
                 if(token.equals(redisToken)){
                     log.info("token 校验通过");
-                    /*requestContext.setSendZuulResponse(true);
+                    requestContext.setSendZuulResponse(true);
                     requestContext.setResponseStatusCode(HttpStatus.OK.value());
-                    requestContext.setResponseBody("auth success");*/
+                    requestContext.setResponseBody("auth success");
                     return null;
                 }else{
                     log.error("zuul token过期");
                 }
             }
+            return null;
         }else{
             log.info("token is null");
         }

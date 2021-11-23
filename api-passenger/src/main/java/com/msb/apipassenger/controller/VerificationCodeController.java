@@ -1,7 +1,6 @@
 package com.msb.apipassenger.controller;
 
 import com.msb.apipassenger.request.ShortMsgRequest;
-import com.msb.apipassenger.request.UserAuthRequest;
 import com.msb.apipassenger.service.VerificationCodeService;
 import com.msb.internalcommon.dto.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +31,13 @@ public class VerificationCodeController {
 
     @GetMapping("/test")
     public Integer test(){
+        System.out.println("test request");
         return new Random().nextInt(100);
     }
 
     @GetMapping("/test2")
     public Integer test2(@PathParam("phoneNumber") String phoneNumber){
+        System.out.println("test2 request: phoneNumber="+phoneNumber);
         return new Random().nextInt(100);
     }
 }
